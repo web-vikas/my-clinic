@@ -5,7 +5,7 @@ import { DashboardContainer } from "../DashboardContainer";
 const Index = () => {
   return (
     <DashboardContainer>
-      <div>Profile</div>
+      <div>Profile Coming Soon .</div>
     </DashboardContainer>
   );
 };

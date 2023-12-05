@@ -6,12 +6,14 @@ import { RequireAuth } from "./components/auth/RequireAuth";
 import { Login, SignUp } from "./pages/auth";
 import * as Doctor from "./pages/Doctor";
 import * as Admin from "./pages/Admin";
+import Book from "./pages/Home/Book";
 
 function App() {
   return (
     <AuthProvider>
       <Routes>
         <Route path="/" element={<Home />}></Route>
+        <Route path="/book" element={<Book />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<SignUp />}></Route>
         <Route

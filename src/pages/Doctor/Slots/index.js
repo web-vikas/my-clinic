@@ -6,21 +6,36 @@ import Body from "./Body";
 import axios from "axios";
 import Config from "../../../config";
 const Index = () => {
-  const [selectedTime, setSelectedTime] = useState();
+  const [selectedTime, setSelectedTime] = useState(null);
   const auth = useAuth();
   const [tableData, setTableData] = useState([]);
-
-  console.log("auth", auth.user);
 
   const handleChange = (e) => {
     setSelectedTime(e.target.value);
   };
+  // ?doctor_id=${auth?.user?._id}
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    axios({
+      method: "post",
+      url: `${Config.API_URL}/doctor/new-slot`,
+      data: { doctor_id: auth?.user?._id, time: selectedTime },
+    })
+      .then((res) => {
+        setSelectedTime(null);
+        init();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {
+    init();
+  }, []);
+
+  const init = () => {
     axios({
       method: "get",
       url: `${Config.API_URL}/doctor/view-slots?doctor_id=${auth?.user?._id}`,
@@ -32,7 +47,7 @@ const Index = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  };
 
   return (
     <DashboardContainer>
