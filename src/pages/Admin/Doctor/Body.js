@@ -47,6 +47,7 @@ const Body = ({ _this }) => {
     { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
     { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
   ];
+  
   return (
     <div>
       <Card className="p-5 mb-2 flex justify-between items-center">

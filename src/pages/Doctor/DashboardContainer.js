@@ -107,7 +107,7 @@ export const DashboardContainer = ({ children }) => {
               </button>
               <div>
                 <p className="uppercase h-12 w-12 rounded-full bg-red-500 font-extrabold grid place-content-center text-3xl text-white leading-4">
-                  {auth?.user[0] || "N"}
+                  {auth?.user?.email[0] || "N"}
                 </p>
               </div>
             </div>
