@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { DashboardContainer } from "../DashboardContainer";
 import Body from "./Body";
 import axios from "axios";
 import Config from "../../../config";
+import { toast } from "react-toastify";
+import { useNavigate, useNavigation } from "react-router-dom";
+
 const Index = () => {
-  const [isPatientModelOpened, setIsPatientModelOpened] = useState(false);
+  const navigate = useNavigate();
   const [patientFormData, setPatientFormData] = useState({
     name: "",
     email: "",
@@ -31,20 +33,22 @@ const Index = () => {
       `${Config.API_URL}/patient/new-patient`,
       patientFormData
     );
+    if (data) {
+      toast.success("Registration Success");
+      navigate("/", { replace: true });
+    } else {
+      return toast.error("Registration Failed");
+    }
   };
   return (
-    <DashboardContainer>
-      <Body
-        _this={{
-          isPatientModelOpened,
-          setIsPatientModelOpened,
-          patientFormData,
-          setPatientFormData,
-          handlePatientChange,
-          handlePatientSubmit,
-        }}
-      />
-    </DashboardContainer>
+    <Body
+      _this={{
+        patientFormData,
+        setPatientFormData,
+        handlePatientChange,
+        handlePatientSubmit,
+      }}
+    />
   );
 };
 

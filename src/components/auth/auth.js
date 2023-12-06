@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1N…3NzJ9.lpGV9ZBg1bVfTG5gFKHlZ7JDTyIeC9LpP2wZSGnPAho",
     active_session_refresh_token: "9SeX0JiH",
   });
-
+  const [patient, setPatient] = useState(null);
   const login = (user) => {
     setUser(user);
   };
@@ -18,9 +18,18 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setUser(null);
   };
+  const patientLogin = (user) => {
+    setPatient(user);
+  };
+
+  const patientLogout = () => {
+    setPatient(null);
+  };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider
+      value={{ user, patient, login, logout, patientLogin, patientLogout }}
+    >
       {children}
     </AuthContext.Provider>
   );

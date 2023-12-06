@@ -2,11 +2,14 @@ import { Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { NotFound } from "./components/NotFound";
 import { AuthProvider } from "./components/auth/auth";
-import { RequireAuth } from "./components/auth/RequireAuth";
-import { Login, SignUp } from "./pages/auth";
+import { RequireAuth, RequirePatientAuth } from "./components/auth/RequireAuth";
+import { Login } from "./pages/auth";
 import * as Doctor from "./pages/Doctor";
 import * as Admin from "./pages/Admin";
+import * as Patient from "./pages/Patient";
 import Book from "./pages/Home/Book";
+import { SignUp } from "./pages/Patient";
+import ConfirmBooking from "./pages/Home/ConfirmBooking";
 
 function App() {
   return (
@@ -15,7 +18,16 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/book" element={<Book />}></Route>
         <Route path="/login" element={<Login />}></Route>
-        <Route path="/register" element={<SignUp />}></Route>
+        <Route path="/patient/login" element={<Patient.Login />}></Route>
+        <Route path="/patient/register" element={<SignUp />}></Route>
+        <Route
+          path="/confirm-booking"
+          element={
+            <RequirePatientAuth>
+              <ConfirmBooking />
+            </RequirePatientAuth>
+          }
+        ></Route>
         <Route
           path="/doctor"
           element={

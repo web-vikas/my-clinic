@@ -6,6 +6,7 @@ import { FaClinicMedical } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoMdVideocam } from "react-icons/io";
 import AppointmentTabs from "../../components/Tabs";
+import { Button } from "@mui/material";
 const Book = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const id = searchParams.get("id");
@@ -109,14 +110,14 @@ const Book = () => {
           <h1 className="text-2xl font-bold font-serif">Clinic Name</h1>
           <div className="mt-3 flex items-center">
             {/* <input name="clinic" type="checkbox" /> */}
-            <input type="radio" name="clinic" id="clinic" />
+            <input type="radio" defaultChecked name="clinic" id="clinic" />
             <label htmlFor="clinic" className="ml-2">
               {data?.address}
             </label>
           </div>
         </div>
         <div className="my-5">
-          <AppointmentTabs data={appointmentsData} />
+          <AppointmentTabs data={appointmentsData} doc={id}/>
         </div>
       </div>
     </>

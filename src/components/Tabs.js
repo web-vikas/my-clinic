@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
-const AppointmentTabs = ({ data }) => {
+const AppointmentTabs = ({ data, doc }) => {
   return (
     <Tabs>
       <TabList>
@@ -15,18 +16,20 @@ const AppointmentTabs = ({ data }) => {
         <TabPanel key={day?.date}>
           <div className="flex gap-2 flex-wrap">
             {day?.appointments?.map((appointment) => (
-              <button
+              <Link
                 key={appointment?._id}
                 style={{
-                  backgroundColor: appointment?.booked ? "green" : "red",
+                  backgroundColor: !appointment?.booked ? "green" : "red",
+                  pointerEvents: appointment?.booked ? "none" : "all",
                 }}
                 className="rounded"
+                to={`/confirm-booking?doctor=${doc}&slot=${appointment?._id}`}
               >
                 <strong className="p-3  text-white ">
                   {new Date(appointment?.time).getHours() | "00"}:
                   {new Date(appointment?.time).getMinutes() | "00"}
                 </strong>
-              </button>
+              </Link>
             ))}
           </div>
         </TabPanel>

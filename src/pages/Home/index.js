@@ -22,6 +22,20 @@ export const Home = () => {
   }, []);
   return (
     <section>
+      <div className="flex gap-3 justify-end bg-blue-500 p-2 mb-5">
+        {/* <Link
+          to="/patient/login"
+          className="font-medium text-white hover:underline dark:text-blue"
+        >
+          Patient Login
+        </Link> */}
+        <Link
+          to="/login"
+          className="font-medium text-white hover:underline dark:text-blue"
+        >
+          Doctor Login
+        </Link>
+      </div>
       <div className="mx-auto  max-w-screen-lg p-10 border-2 ">
         <h1 className="text-2xl md:text-4xl text-center font-bold">
           Select your doctor for slot booking
@@ -36,7 +50,9 @@ export const Home = () => {
                   className="rounded flex-[0_0_40%] max-sm:flex-[0_0_100%] border-2  lg:flex-[0_0_30%] py-4"
                   to={`/book?id=${val?._id}`}
                 >
-                  <h1 className="text-2xl font-semibold text-center">{val?.name}</h1>
+                  <h1 className="text-2xl font-semibold text-center">
+                    {val?.name}
+                  </h1>
                   <p className="text-center">{val?.specialist}</p>
                 </Link>
               );
