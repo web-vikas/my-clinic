@@ -41,8 +41,8 @@ Copy the `.env.example` file and create a new `.env` file. Update the variables 
 
 ```bash
 cp .env.example .env
-
+```
 ### Live Preview
-  ```bash
+```bash
  https://my-clinic-six.vercel.app/
-    ```
+```
